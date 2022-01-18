@@ -1,18 +1,17 @@
 package Search;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
-public class DecimalSearch {
+public class PrimeSearch {
     public static void main(String[] args) {
         String numbers = "7834";//"7834" -> 12
         int answer = 0;
-        String temp = "";
-
         char[]arr = numbers.toCharArray();
         Arrays.sort(arr);
 
@@ -29,26 +28,21 @@ public class DecimalSearch {
             }
             s="";
         }
-        System.out.println(list);
+
         List<Integer> list2=  list.stream().map(Integer::parseInt).distinct().collect(toList());
-
-        for(int i = 0; i<list2.size(); i++){
-            int count = 0;
-            int num = list2.get(i);
-            for(int j = 2; j < num ; j++){
-                if(num % j ==0){
-                    count++;
-                    break;
-                }
-            }
-            if(count == 0 && num != 0 && num!= 1){
-                answer++;
-            }
-        }
         System.out.println(list2);
+        for(int i : list2) {
 
+            System.out.println(isPrime(list2, i));
+        }
 
-        System.out.println(answer);
 
     }
+    public static boolean isPrime(List<Integer> primes,int candidate){
+        return primes.stream()
+                .noneMatch(i-> candidate % i == 0);
+    }
+
+
+
 }
