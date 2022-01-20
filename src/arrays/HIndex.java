@@ -1,12 +1,9 @@
-package Arrays;
+package arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.*;
 
 public class HIndex {
     public static void main(String[] args) {

@@ -1,11 +1,7 @@
-package Arrays;
+package arrays;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.toList;
 
 public class Numbers {
     public static void main(String[] args) {

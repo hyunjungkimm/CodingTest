@@ -1,4 +1,4 @@
-package PhoneList;
+package phoneList;
 
 public class StartsWithTest {
     public static void main(String[]args){

@@ -1,4 +1,4 @@
-package Arrays;
+package arrays;
 
 public class HIndex2 {
     public static void main(String[] args) {
