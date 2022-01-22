@@ -4,23 +4,44 @@ import java.util.*;
 
 public class Printer {
     public static void main(String[] args) {
-        int[] priorities = {1,1,9,1,1,1};
+        int[] priorities = {1,2,3};
         int location = 0;
-        int answer = 0;//5
+        int answer = 0;//3
 
-        int[] arr = Arrays.stream(priorities).boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();
-        int num = 0;
-        for(int i = 0; i<arr.length; i++){
-            if(priorities[location] == arr[i]) {
-                num++;
+        Map<Integer,Integer> map = new LinkedHashMap<>();
+
+        for(int i = 0; i < priorities.length; i++){
+            map.put(i, priorities[i]);
+        }
+/*
+
+        int pos = 1;
+        int value = (new ArrayList<Integer>(map.values())).get(pos);
+*/
+
+        for(int i = 0; i < map.size(); i++){
+            int value = map.get(i);
+            for(int j = i+1; j < map.size(); j++){
+                if(map.get(i) < map.get(j)) {
+                    map.remove(i);
+                    map.put(i, value);
+                }
+
+            }
+            System.out.println(map);
+        }
+
+        Iterator<Integer> iterator = map.keySet().iterator();
+
+        while (iterator.hasNext()){
+            int key = iterator.next();
+
+            answer++;
+            if(location == key){
+                break;
             }
         }
 
-        if(num == 1){
-            System.out.println(answer+1);//return answer;
-        }else{
-            System.out.println(answer);
-        }
-
+        System.out.println(answer);
     }
 }
