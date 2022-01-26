@@ -1,4 +1,4 @@
-package arrays;
+package codingTest.arrays;
 
 public class HIndex2 {
     public static void main(String[] args) {

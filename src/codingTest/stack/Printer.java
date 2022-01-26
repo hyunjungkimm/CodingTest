@@ -1,32 +1,30 @@
-package stack;
+package codingTest.stack;
 
 import java.util.*;
 
 public class Printer {
-    public static void main(String[] args) {
-        int[] priorities = {1,2,3};
-        int location = 0;
+    public int solution(int[] priorities, int location) {
         int answer = 0;//3
 
-        Map<Integer,Integer> map = new LinkedHashMap<>();
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
 
-        for(int i = 0; i < priorities.length; i++){
-            map.put(i, priorities[i]);
+        for(int num : priorities){
+            queue.add(num);
         }
 
-        priorities = Arrays.stream(priorities).boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();
-
-        System.out.println(Arrays.toString(priorities));
-        System.out.println(map);
-        for(int keySet : map.keySet()) {
-            for (int i = 0; i < priorities.length; i++) {
-                if (i == keySet) {
-                    if (priorities[location] == map.get(keySet)) {
-                        answer= i+1;
+        while(!queue.isEmpty()){
+            for(int i = 0; i<priorities.length; i++){
+                if(queue.peek() == priorities[i]){
+                    if(i == location){
+                        answer++;
+                        return answer;
                     }
+                    queue.poll();
+                    answer++;
                 }
             }
         }
-        System.out.println(answer);
+
+        return -1;
     }
 }

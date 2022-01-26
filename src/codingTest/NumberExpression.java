@@ -1,3 +1,5 @@
+package codingTest;
+
 public class NumberExpression {
     public int solution(int n) {
         int answer = 1;

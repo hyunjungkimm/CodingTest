@@ -1,4 +1,4 @@
-package phoneList;
+package codingTest.phoneList;
 
 import java.util.Arrays;
 

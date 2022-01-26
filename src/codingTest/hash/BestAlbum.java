@@ -1,4 +1,4 @@
-package hash;
+package codingTest.hash;
 
 import java.util.*;
 

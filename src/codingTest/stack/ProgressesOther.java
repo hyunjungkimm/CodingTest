@@ -1,4 +1,4 @@
-package stack;
+package codingTest.stack;
 
 import java.util.Arrays;
 

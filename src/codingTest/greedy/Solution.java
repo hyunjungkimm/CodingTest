@@ -1,4 +1,4 @@
-package greedy;
+package codingTest.greedy;
 
 import static java.util.stream.Collectors.*;
 import java.util.Arrays;

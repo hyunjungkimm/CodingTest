@@ -1,4 +1,4 @@
-package chapter.stack;
+package QueStack;
 
 import java.util.LinkedList;
 import java.util.Queue;

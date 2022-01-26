@@ -1,3 +1,5 @@
+package codingTest;
+
 import java.util.*;
 public class KeyPad {
     public static void main(String[] args) {

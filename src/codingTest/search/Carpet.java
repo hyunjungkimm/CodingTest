@@ -1,4 +1,4 @@
-package search;
+package codingTest.search;
 
 import java.util.*;
 

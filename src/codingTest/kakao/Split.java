@@ -1,6 +1,4 @@
-package kakao;
-
-import java.util.Arrays;
+package codingTest.kakao;
 
 public class Split {
     public static void main(String[] args) {

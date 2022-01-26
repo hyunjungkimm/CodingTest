@@ -1,4 +1,4 @@
-package arrays;
+package codingTest.arrays;
 
 import java.util.*;
 import java.util.stream.Collectors;

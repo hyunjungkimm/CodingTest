@@ -1,4 +1,4 @@
-package kakao;
+package codingTest.kakao;
 
 import java.util.*;
 
