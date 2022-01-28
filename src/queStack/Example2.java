@@ -1,4 +1,4 @@
-package QueStack;
+package queStack;
 
 import java.util.PriorityQueue;
 import java.util.Queue;

@@ -1,46 +1,49 @@
 package codingTest.search;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.*;
 
 public class PrimeSearch {
     public static void main(String[] args) {
-        String numbers = "7834";//"7834" -> 12
+        String numbers = "7834";
         int answer = 0;
-        char[]arr = numbers.toCharArray();
+        String temp = "";
+        char[] arr = numbers.toCharArray();
+
         Arrays.sort(arr);
-
-        List<String> list = new ArrayList<>();
-
-        for(int i = 0; i< arr.length; i++){
-            String s = arr[i]+"";
-            list.add(s);
-            for(int j = 0; j<arr.length; j++){
-                if(i!=j) {
-                    s += arr[j];
-                    list.add(s);
+        for(int i = arr.length-1; i>=0; i--){
+            temp+=arr[i]+"";
+        }
+        int num = Integer.parseInt(temp);
+        for(int i = 2; i<=num; i++){
+            boolean isPrime = true;
+            for(int j = 2 ; j <=Math.sqrt(i); j++){
+                if(i % j == 0) {
+                    isPrime = false;
+                    break;
                 }
             }
-            s="";
+            int ok = 0;
+            if(isPrime){
+                String check = String.valueOf(i);
+
+                char[] reset = numbers.toCharArray();
+                    for(int z = 0; z<check.length(); z++){
+                        for(int a = 0; a<reset.length; a++){
+                            if(check.charAt(z) == reset[a]){
+                                ok++;
+                                reset[a] = ' ';
+                            };
+                    }
+                }
+                if(ok == check.length()){
+                    System.out.println(ok + ": " +check);
+                    answer++;
+                }
+            }
+
+
+
         }
-
-        List<Integer> list2=  list.stream().map(Integer::parseInt).distinct().collect(toList());
-        System.out.println(list2);
-        for(int i : list2) {
-
-            System.out.println(isPrime(list2, i));
-        }
-
-
+        System.out.println(answer);//12
     }
-    public static boolean isPrime(List<Integer> primes,int candidate){
-        return primes.stream()
-                .noneMatch(i-> candidate % i == 0);
-    }
-
-
-
 }
