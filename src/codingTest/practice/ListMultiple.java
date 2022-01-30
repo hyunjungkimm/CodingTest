@@ -7,32 +7,20 @@ import java.util.List;
 public class ListMultiple {
     public int solution(int[] arr) {
         int answer = 0;
-        int num = 0;
         Arrays.sort(arr);
 
-        for(int i = arr[0]; i<=100; i++){
-            boolean check = true;
-            for(int j = 0; j<arr.length; j++){
-                if(arr[j] % i != 0){
-                    check = false;
+        int num = arr[0];
+        for(int i = 1; i< arr.length ; i++){
+            int max = Math.max(num, arr[i]);
+            for(int j = max; j<=num*arr[i]; j++){
+                if(j % arr[i] == 0 & j % num ==0){
+                    num = j;
                     break;
                 }
             }
-
-            if(check == true) {
-                num = i;
-                break;
-            }
         }
 
-        for(int i = 0; i <arr.length; i++){
-            if(arr[i] == num) {
-                answer += num;
-            }else{
-                answer *= (arr[i] / num);
-            }
-        }
-
+        answer = num;
 
         return answer;
     }
