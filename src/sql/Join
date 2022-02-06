@@ -1,0 +1,33 @@
+--없어진 기록 찾기
+SELECT b.animal_id, b.name
+from animal_ins a
+right join animal_outs b
+on a.animal_id = b.animal_id
+where a.animal_id is null
+order by animal_id asc;
+
+--있었는데요 없었습니다
+SELECT a.animal_id, a.name
+from animal_ins a
+inner join
+animal_outs b
+on a.animal_id = b.animal_id
+where a.datetime > b.datetime
+order by a.datetime;
+
+--오랜 기간 보호한 동물(1)
+SELECT a.name, a.datetime
+from animal_ins a
+left join animal_outs b
+on a.animal_id = b.animal_id
+where b.animal_id is null
+order by datetime
+limit 3;
+
+--보호소에서 중성화한 동물
+SELECT b.animal_id, b.animal_type, b.name
+from animal_ins a
+inner join animal_outs b
+on a.animal_id = b.animal_id
+where a.sex_upon_intake like '%Intact%'
+and (b.sex_upon_outcome like '%Spayed%' or b.sex_upon_outcome like '%Neutered%');

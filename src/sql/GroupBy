@@ -1,0 +1,30 @@
+--고양이와 개는 몇 마리 있을까
+SELECT ANIMAL_TYPE, count(animal_id) as count from animal_ins
+where animal_type= 'Cat' or animal_type= 'Dog'
+group by animal_type
+order by count;
+
+--동명 동물 수 찾기
+SELECT name, count(name) as count from animal_ins
+group by name having count >= 2
+order by name ;
+
+--입양 시각 구하기(1)
+SELECT Date_Format(datetime,"%H")as hour, count(animal_id)as count
+from animal_outs
+group by hour
+having hour > 8 and hour < 20
+order by hour;
+
+--입양 시각 구하기(2)
+with recursive rc as
+(
+    select 0 as n
+    union all
+    select n+1 from rc where n<23
+)
+select a.n, count(hour(b.datetime)) hour
+from rc a
+left join animal_outs b
+on a.n = hour(b.datetime)
+group by a.n
