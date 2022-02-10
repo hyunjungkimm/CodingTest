@@ -5,7 +5,7 @@ import java.util.Collections;
 
 import java.util.Scanner;
 
-public class Main {
+public class CoinZero {
     public static void main(String[] args) {
         int answer = 0;
         Scanner scanner = new Scanner(System.in);
