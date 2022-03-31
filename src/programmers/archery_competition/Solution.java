@@ -1,43 +1,58 @@
 package programmers.archery_competition;
 
-import java.util.*;
-
 public class Solution {
+    private int[] maxRet;
+    private int maxScore;
     public int[] solution(int n, int[] info) {
-        int[] answer = {};
-        int count = 0;
-        int[] arr = new int[info.length];
+        maxRet = new int[11];
+        maxScore = 0;
+        helper(info, n, 0, 0, 0, new int[11]);
+        return maxScore == 0 ? new int[]{-1} : maxRet;
+    }
 
-        for(int i = 0; i<info.length; i++){
-            if(i ==0 && n == 1 && info[0] >= 1){
-                answer = new int[]{-1};
-                break;
-            }else if(n > 0){
-                if(info[i] == 0){
-                    if(n > 0){
-                        arr[i] = 1;
-                        n-=1;
-                    }
-                }else if(info[i] == 1){
-                    if(n > 1){
-                        arr[i] = 2;
-                        n-=2;
-                    }
+    public void helper(int[] info, int n, int score, int opponent, int idx, int[] arr){
+        if(idx == 10){
+            if(score - opponent >= maxScore){
+                arr[idx] = n;
+                if(maxScore < (score-opponent)){
+                    setArr(arr);
+                    maxScore = score - opponent;
+                }else if(maxScore == (score-opponent)){
+                    if(checkSort(arr)) setArr(arr);
                 }
-                count++;
-            }else{
+            }
+            return;
+        }
+
+        //이길때
+        if(info[idx] < n){
+            arr[idx] = info[idx] +1 ;
+            helper(info, n-(info[idx] + 1), score + (10- idx), opponent, idx+1, arr);
+        }
+        //질때
+        arr[idx] = 0;
+        helper(info, n, score ,opponent + (info[idx] > 0? - (10-idx):0), idx+1, arr);
+        return;
+    }
+
+    public void setArr(int[] arr){
+        for(int i = 0; i <= 10; i++){
+            maxRet[i] = arr[i];
+        }
+        return;
+    }
+
+    public boolean checkSort(int[] arr){
+        for(int i = 0; i>=0; i--) {
+            if (maxRet[i] == arr[i]) {
+                continue;
+            } else if (maxRet[i] < arr[i]) {
+                return true;
+            } else {
                 break;
             }
         }
-
-        if(n != 0){
-            arr[10] = n;
-        }
-
-        if(count != 0){
-            answer = new int[info.length];
-            answer = arr;
-        }
-        return answer;
+            return false;
     }
 }
+
