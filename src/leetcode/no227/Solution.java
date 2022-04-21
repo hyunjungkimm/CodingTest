@@ -1,41 +1,35 @@
 package leetcode.no227;
 
-public class Solution {
+class Solution {
     public int calculate(String s) {
-        int answer = 0;
-        int temp = 0;
-        s= s.replaceAll(" ", "");
+        int result = 0;
+        int currentNumber = 0;
+        int lastNumber = 0;
+        int length = s.length();
+        char operator = '+';
 
-        char[] arr = s.toCharArray();
+        for(int i = 0; i<length; i++){
+            char charCurrent = s.charAt(i);
 
-        StringBuffer sb = new StringBuffer();
-
-        for(int i = 0; i<arr.length; i++){
-            if(arr[i] == '+' || arr[i] =='-'){
-                sb.append(arr[i-1]);
-                sb.append(arr[i]);
-            }else if(s.charAt(i) =='/'){
-                int num1 = arr[i-1]-48;
-                int num2 = arr[i+1]-48;
-                int divide = num1/num2;
-                System.out.println(num1 + "/ " + num2 + "=" +divide);
-                sb.append(divide);
-            }else if(s.charAt(i) == '*'){
-                int num1 = arr[i-1]-48;
-                int num2 = arr[i+1]-48;
-                int mod = num1*num2;
-                sb.append(mod);
+            if(Character.isDigit(charCurrent)){
+                currentNumber = (currentNumber * 10) + (charCurrent-'0');
             }
+
+            if((!Character.isDigit(charCurrent) && !Character.isWhitespace(charCurrent)) || i == length -1){
+                if(operator == '+' || operator == '-'){
+                    result += lastNumber;
+                    lastNumber = (operator == '+')? currentNumber : -currentNumber;
+                }else if(operator == '*'){
+                    lastNumber *= currentNumber;
+                }else if(operator == '/'){
+                    lastNumber /= currentNumber;
+                }
+                operator = charCurrent;
+                currentNumber = 0;
+            }
+
         }
-
-
-        for(int i = 0; i<sb.length(); i++){
-            answer+=sb.charAt(i)-48;
-            System.out.println(answer);
-        }
-
-        System.out.println(sb);
-
-        return answer;
+        result += lastNumber;
+        return result;
     }
 }
